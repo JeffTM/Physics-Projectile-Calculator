@@ -24,11 +24,12 @@ def readFloat(prompt):
 print "Projectile statistics calculator v1.0"
 print
 print "Unit abbreviations:"
-print "m - meters, s - seconds, deg - degrees"
+print "m - meters, s - seconds, kg - kilograms, deg - degrees"
 print #Skip line
 
 #Constan variables
 g = 9.81
+airDensity = 1.255
 precision = 3;
 
 #Get user input
@@ -62,5 +63,18 @@ print "Range at max height %sm" % (round(rangeAtMax, precision))
 print #Skip line
 
 #POINT: Calculate terminal speed ------------------------------------------------------------------------
+
+projectileMass = readFloat("Enter the projectile's mass (kg):")
+parachuteArea = readFloat("Enter the area of your parachute (m^2):")
+parachuteDragCo = readFloat("Enter the parachutes drag coefficient (no unit):")
+print #Skip line
+
+#Calculate terminal velocity
+#v = sqrt((2 * m * g) / (p * A * C))
+terminalVelocity = sqrt((2 * projectileMass * g) / (airDensity * parachuteArea * parachuteDragCo))
+
+#Display rounded results
+print "Terminal Velocity %sm/s" % (round(terminalVelocity, precision))
+print #Skip line
 
 #POINT: Calculate minimum stopping distance and minimum stopping time -----------------------------------
