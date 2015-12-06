@@ -1,0 +1,66 @@
+#import math library
+from math import *
+
+#Utility function definitions ----------------------------------------------------------------------------
+
+#Gets a valid floating point (decimal number) from the user, displaying a prompt beforehand
+def readFloat(prompt):
+  
+  responseInvalid = True
+  
+  while (responseInvalid):
+    s = raw_input(prompt)
+    try:
+      n = float(s)
+      responseInvalid = False
+    except (ValueError):
+      print "Invalid number! Please reenter."
+    
+  return n
+
+#Main program -------------------------------------------------------------------------------------------
+
+#Introduce program
+print "Projectile statistics calculator v1.0"
+print
+print "Unit abbreviations:"
+print "m - meters, s - seconds, deg - degrees"
+print #Skip line
+
+#Constan variables
+g = 9.81
+precision = 3;
+
+#Get user input
+launchVelocityInit = readFloat("Enter the initial launch speed (m/s):")
+launchAngleInit = readFloat("Enter the initial launch angle (deg):")
+print #Skip line
+
+#Recalculate lauch angle in radians
+#Modulus launch angle so its between 0 and 360 then translate launch angle to radians
+launchAngleInit = radians(launchAngleInit % 360.0) 
+
+
+#Calculate time at max height
+#https://en.wikipedia.org/wiki/Projectile_motion#The_maximum_height_of_projectile
+#t = Vo * Sin(angle) / g
+timeAtYMax = launchVelocityInit * sin(launchAngleInit) / g
+
+#Calculate max height 
+#http://physics.bu.edu/~duffy/semester1/c4_maxheight.html
+#Ymax = Vo^2 * sin^2(angle) /(2 g)
+yMax = launchVelocityInit**2 * sin(launchAngleInit)**2 / (2 * g)
+
+#Calculate range at max height
+# r = timeAtMax * Vo * cos(angle)
+rangeAtMax = timeAtYMax * launchVelocityInit * cos(launchAngleInit)
+
+#Display rounded results
+print "Max height: %sm" % (round(yMax, precision))
+print "Time at max height %ss" % (round(timeAtYMax, precision))
+print "Range at max height %sm" % (round(rangeAtMax, precision))
+print #Skip line
+
+#POINT: Calculate terminal speed ------------------------------------------------------------------------
+
+#POINT: Calculate minimum stopping distance and minimum stopping time -----------------------------------
