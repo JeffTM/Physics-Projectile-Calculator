@@ -85,3 +85,7 @@ print #Skip line
 stopTime = (projectileMass * terminalVelocity) / (maxForce)
 print "Stopping Time: %ss" % (round(stopTime, precision))
 print #Skip Line
+
+#Stopping distance equation
+stopDist = (terminalVelocity * stopTime) - (0.5 * (maxForce / projectileMass) * stopTime**2)
+print "Stopping Distance %sm" % (round(stopDist, precision))
