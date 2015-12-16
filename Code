@@ -78,3 +78,14 @@ print "Terminal Velocity %sm/s" % (round(terminalVelocity, precision))
 print #Skip line
 
 #POINT: Calculate minimum stopping distance and minimum stopping time -----------------------------------
+projectileForce = readFloat("Enter force of projectile on ground (N):")
+print #Skip line
+
+#Stopping time equation
+stopTime = (projectileMass * terminalVelocity) / (projectileForce)
+print "Stopping Time: %ss" % (round(stopTime, precision))
+print #Skip Line
+
+#Stopping distance equation
+stopDist = (terminalVelocity * stopTime) - (4.9 * (stopTime ** 2))
+print "Stopping Distance %sm" % (round(stopDist, precision))
